@@ -1,0 +1,551 @@
+[
+    {
+        "id": "08dc41d47d4d9e09",
+        "type": "tab",
+        "label": "DHT_PostgreSQL",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "03aadedc52584cba",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": true
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "2d9d3b86bff5a3d2",
+        "type": "postgresDB",
+        "name": "postgres",
+        "host": "127.0.0.1",
+        "hostFieldType": "str",
+        "port": "5432",
+        "portFieldType": "num",
+        "database": "postgres",
+        "databaseFieldType": "str",
+        "ssl": "false",
+        "sslFieldType": "bool",
+        "max": "10",
+        "maxFieldType": "num",
+        "min": "1",
+        "minFieldType": "num",
+        "idle": "1000",
+        "idleFieldType": "num",
+        "connectionTimeout": "10000",
+        "connectionTimeoutFieldType": "num",
+        "user": "postgres",
+        "userFieldType": "str",
+        "password": "123",
+        "passwordFieldType": "str"
+    },
+    {
+        "id": "49ca43fc9b95bcc1",
+        "type": "ui_group",
+        "name": "Current Temperature & Humidity",
+        "tab": "50b4e86120098aeb",
+        "order": 1,
+        "disp": true,
+        "width": "13",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "6879ef9ca30c1e34",
+        "type": "ui_group",
+        "name": "Chart",
+        "tab": "50b4e86120098aeb",
+        "order": 2,
+        "disp": true,
+        "width": "13",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "756d53853a29259a",
+        "type": "ui_group",
+        "name": "Raw Data Table",
+        "tab": "50b4e86120098aeb",
+        "order": 3,
+        "disp": true,
+        "width": "8",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "50b4e86120098aeb",
+        "type": "ui_tab",
+        "name": "DHT-11",
+        "icon": "dashboard",
+        "order": 7,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "acddd911a6412f0a",
+        "type": "inject",
+        "z": "08dc41d47d4d9e09",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 140,
+        "wires": [
+            [
+                "60f82608b91e1010",
+                "a7941c012545db2a"
+            ]
+        ]
+    },
+    {
+        "id": "60f82608b91e1010",
+        "type": "postgrestor",
+        "z": "08dc41d47d4d9e09",
+        "name": "",
+        "query": "SELECT * FROM dht_data order by time desc limit 1;",
+        "postgresDB": "2d9d3b86bff5a3d2",
+        "output": true,
+        "outputs": 1,
+        "x": 310,
+        "y": 140,
+        "wires": [
+            [
+                "2536c7ad0157dbf2",
+                "cd48a2caa41c4e6d",
+                "f4e35f08bc3c2f6c"
+            ]
+        ]
+    },
+    {
+        "id": "2536c7ad0157dbf2",
+        "type": "ui_gauge",
+        "z": "08dc41d47d4d9e09",
+        "name": "",
+        "group": "49ca43fc9b95bcc1",
+        "order": 2,
+        "width": "6",
+        "height": "4",
+        "gtype": "gage",
+        "title": "Temperature",
+        "label": "C",
+        "format": "{{payload.rows[0].temp}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 510,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "cd48a2caa41c4e6d",
+        "type": "ui_gauge",
+        "z": "08dc41d47d4d9e09",
+        "name": "",
+        "group": "49ca43fc9b95bcc1",
+        "order": 3,
+        "width": "6",
+        "height": "4",
+        "gtype": "gage",
+        "title": "Humidity",
+        "label": "%",
+        "format": "{{payload.rows[0].humidity}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 500,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "cd4adcf359d66588",
+        "type": "ui_text",
+        "z": "08dc41d47d4d9e09",
+        "group": "49ca43fc9b95bcc1",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Update Time:   ",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 730,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "f4e35f08bc3c2f6c",
+        "type": "moment",
+        "z": "08dc41d47d4d9e09",
+        "name": "",
+        "topic": "",
+        "input": "payload.rows[0].time",
+        "inputType": "msg",
+        "inTz": "Asia/Jakarta",
+        "adjAmount": 0,
+        "adjType": "days",
+        "adjDir": "add",
+        "format": "YYYY-MM-DD HH:mm:ss",
+        "locale": "en-US",
+        "output": "payload",
+        "outputType": "msg",
+        "outTz": "Asia/Jakarta",
+        "x": 540,
+        "y": 80,
+        "wires": [
+            [
+                "cd4adcf359d66588"
+            ]
+        ]
+    },
+    {
+        "id": "a7941c012545db2a",
+        "type": "postgrestor",
+        "z": "08dc41d47d4d9e09",
+        "name": "",
+        "query": "select TO_CHAR(time, 'YYYY-MM-DD HH:mm:ss') as time,temp,humidity from (SELECT * FROM dht_data order by time desc limit 30) as data order by time;",
+        "postgresDB": "2d9d3b86bff5a3d2",
+        "output": true,
+        "outputs": 1,
+        "x": 310,
+        "y": 280,
+        "wires": [
+            [
+                "de934747674f4abc",
+                "b6869634764c8604",
+                "15f7b694306c2f80"
+            ]
+        ]
+    },
+    {
+        "id": "bc052292a6aa1f41",
+        "type": "ui_chart",
+        "z": "08dc41d47d4d9e09",
+        "name": "",
+        "group": "6879ef9ca30c1e34",
+        "order": 0,
+        "width": "13",
+        "height": "4",
+        "label": "Temperature",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 690,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "de934747674f4abc",
+        "type": "function",
+        "z": "08dc41d47d4d9e09",
+        "name": "Format chart",
+        "func": "var data = [];\nvar label = [];\nvar i;\ndata.push([]);\nfor (i = 0; i < msg.payload.rows.length; i++) \n{\n  data[0].push(msg.payload.rows[i]['temp']);\n}\n\nfor (i = 0; i < msg.payload.rows.length; i++) \n{\n  label.push(msg.payload.rows[i]['time']);\n}\n\nvar m={\n    \"series\":[\"Temperature\"],\n    \"data\":data,\n    \"labels\":label\n};\n\nreturn {payload:[m]};\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 280,
+        "wires": [
+            [
+                "bc052292a6aa1f41"
+            ]
+        ]
+    },
+    {
+        "id": "864f41576f8d37a8",
+        "type": "ui_chart",
+        "z": "08dc41d47d4d9e09",
+        "name": "",
+        "group": "6879ef9ca30c1e34",
+        "order": 0,
+        "width": "13",
+        "height": "4",
+        "label": "Humidity",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 680,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b6869634764c8604",
+        "type": "function",
+        "z": "08dc41d47d4d9e09",
+        "name": "Format chart",
+        "func": "var data = [];\nvar label = [];\nvar i;\ndata.push([]);\nfor (i = 0; i < msg.payload.rows.length; i++) \n{\n  data[0].push(msg.payload.rows[i]['humidity']);\n}\n\nfor (i = 0; i < msg.payload.rows.length; i++) \n{\n  label.push(msg.payload.rows[i]['time']);\n}\n\nvar m={\n    \"series\":[\"Humidity\"],\n    \"data\":data,\n    \"labels\":label\n};\n\nreturn {payload:[m]};\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 340,
+        "wires": [
+            [
+                "864f41576f8d37a8"
+            ]
+        ]
+    },
+    {
+        "id": "15f7b694306c2f80",
+        "type": "function",
+        "z": "08dc41d47d4d9e09",
+        "name": "create array",
+        "func": "\nvar i;\nvar list_data = [];\nfor (i = 0; i < msg.payload.rows.length; i++) \n{\n  list_data.push({\"No\":i+1,\"Time\":msg.payload.rows[i]['time'],\"Temperature\":msg.payload.rows[i]['temp'],\n  \"Humidity\":msg.payload.rows[i]['humidity']});\n}\n\nmsg.payload = list_data;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 440,
+        "wires": [
+            [
+                "997a83e59f6a3cdc"
+            ]
+        ]
+    },
+    {
+        "id": "997a83e59f6a3cdc",
+        "type": "ui_table",
+        "z": "08dc41d47d4d9e09",
+        "group": "756d53853a29259a",
+        "name": "",
+        "order": 0,
+        "width": "8",
+        "height": "14",
+        "columns": [],
+        "outputs": 1,
+        "cts": true,
+        "x": 670,
+        "y": 440,
+        "wires": [
+            [
+                "7fd94d3ea87889b9"
+            ]
+        ]
+    },
+    {
+        "id": "7fd94d3ea87889b9",
+        "type": "template",
+        "z": "08dc41d47d4d9e09",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "html",
+        "syntax": "mustache",
+        "template": "Time: {{payload.Time}}<br>\nTemperature: {{payload.Temperature}}<br>\nHumidity: {{payload.Humidity}}<br>",
+        "output": "str",
+        "x": 680,
+        "y": 480,
+        "wires": [
+            [
+                "5d991cfa9fbd5624"
+            ]
+        ]
+    },
+    {
+        "id": "5d991cfa9fbd5624",
+        "type": "ui_toast",
+        "z": "08dc41d47d4d9e09",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": true,
+        "className": "",
+        "topic": "Data",
+        "name": "",
+        "x": 710,
+        "y": 540,
+        "wires": []
+    }
+]
